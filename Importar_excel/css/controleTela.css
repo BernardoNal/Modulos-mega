@@ -1,0 +1,13 @@
+body{
+    background-color: rgb(255, 255, 255);
+    min-height: 400px;
+}
+h1 {
+    color:red;
+    margin: 0 0 5px;
+  }
+h2{
+    color:blue;
+    margin: auto;
+    size: 12;
+}  
