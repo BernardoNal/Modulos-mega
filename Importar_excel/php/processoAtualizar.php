@@ -33,7 +33,7 @@
 				foreach($linhas as $linha){
 					//Inserção das linhas da Tabela
 					if($primeira_linha == false){
-						echo "<hr>";
+						//echo "<hr>";
 						for($i = 0; $i < $colunas; $i++){
 							$aux_var = $linha->getElementsByTagName("Data")->item($i)->nodeValue;
 							$var[$i] = "'".str_replace("'", $replaceString, $aux_var)."'"; 
@@ -62,7 +62,8 @@
 			}	
 			}else{
 				echo "Não foi possível Limpar <br>";
-					}		
+					}	
+			echo "atualização concluida";			
 		}else{
 			echo "erro na leitura da planilha";
 		}
@@ -71,5 +72,6 @@
 		echo "Essa tabela '$Tabela' não existe";
 	}
 	mysqli_close($conn);
+	
 ?>
 
