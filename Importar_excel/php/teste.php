@@ -11,8 +11,7 @@ if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = "INSERT INTO usuario (nome)
-VALUES ('Daniel')";
+/*$sql = "INSERT INTO usuario (nome)VALUES ('Daniel')";
 
 if (mysqli_query($conn, $sql)) {
   echo "New record created successfully";
@@ -20,5 +19,5 @@ if (mysqli_query($conn, $sql)) {
   echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
 
-mysqli_close($conn);
+mysqli_close($conn);*/
 ?>
