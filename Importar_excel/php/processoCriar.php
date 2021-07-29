@@ -20,14 +20,19 @@
 			
 			foreach($linhas as $linha){
 					
-                
+                $tag_linha=$linha->getElementsByTagName('Data');
 					//Inserção das linhas da Tabela
 					if($primeira_linha == false){
 						//echo "<hr>";
+						
 						for($i = 0; $i < $colunas; $i++){
-							$aux_var = $linha->getElementsByTagName("Data")->item($i)->nodeValue;
-							$var[$i] = "'".str_replace("'", $replaceString, $aux_var)."'"; 
-						}
+							if(is_object($tag_linha->item($i))){
+								$aux_var = $tag_linha->item($i)->nodeValue;
+								$var[$i] = "'".str_replace("'", $replaceString, $aux_var)."'"; }
+								else{
+									$var[$i]="' '";
+								}
+							}
 						$valores_coluna=implode(",",$var);
 						//comando de inserção
 						$comando_sql= "INSERT INTO  $Tabela($var_coluna)VALUES($valores_coluna)";
@@ -41,7 +46,7 @@
                 }else{
                     //recebe nome da colunas da tabela
 					for($i = 0; $i < $colunas; $i++){
-							$aux = $linha->getElementsByTagName("Data")->item($i)->nodeValue;
+							$aux = $tag_linha->item($i)->nodeValue;
                            // $aux2=str_replace("ó", "o", $aux);
                             $aux3=str_replace(".", $replaceString, $aux);
                             $var_tipo[$i] = str_replace($searchString, $replaceString, $aux3); 

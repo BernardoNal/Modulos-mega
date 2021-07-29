@@ -29,12 +29,11 @@
 				$searchString = ' ';
 				$replaceString = '';	
 				$primeira_linha = true;
-			
+				$n_inserts=0;
 				foreach($linhas as $linha){
 					//Inserção das linhas da Tabela
 					$tag_linha=$linha->getElementsByTagName('Data');
 					if($primeira_linha == false){
-						//echo "<hr>";
 						for($i = 0; $i < $colunas; $i++){
 							if(is_object($tag_linha->item($i))){
 							$aux_var = $tag_linha->item($i)->nodeValue;
@@ -44,15 +43,9 @@
 							}
 						}
 						$valores_coluna=implode(',',$var);
-						//comando de inserção
-						$comando_sql= "INSERT INTO  $Tabela($var_coluna)VALUES($valores_coluna)";
-						$insert = mysqli_query($conn,$comando_sql);
-						if ($insert) {
-							//echo " New record created successfully<hr>";
-					  	} else {
-							echo "Error: <br>" . mysqli_error($conn);
-					  	}
-						//echo $comando_sql.";<br>";
+						$total_valores[$n_inserts]=$valores_coluna;
+						++$n_inserts;
+						
 				}else{
 					//linha de nome das colunas da Tabela
 					for($i = 0; $i < $colunas; $i++){
@@ -65,8 +58,16 @@
 			}	
 			}else{
 				echo "Não foi possível Limpar <br>";
-					}	
-			echo "atualização concluida";			
+					}
+					$comando_sql= "INSERT INTO  $Tabela($var_coluna)VALUES(".implode('),(',$total_valores).")";
+						/*$insert = mysqli_query($conn,$comando_sql);
+						if ($insert) {
+							echo "atualização concluida";
+							//echo " New record created successfully<hr>";
+					  	} else {
+							echo "Error: <br>" . mysqli_error($conn);
+					  	}*/	
+			//echo "atualização concluida";			
 		}else{
 			echo "erro na leitura da planilha";
 		}break;
