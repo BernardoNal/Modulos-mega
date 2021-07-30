@@ -5,9 +5,5 @@ body{
 h1 {
     color:red;
     margin: 0 0 5px;
+    margin-top: auto;
   }
-h2{
-    color:blue;
-    margin: auto;
-    size: 12;
-}  
